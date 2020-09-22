@@ -4,7 +4,7 @@
  * @LastEditors: liangzhanpeng
 -->
 <template>
-  <div></div>
+  <div>Login</div>
 </template>
 
 <script lang="ts">
