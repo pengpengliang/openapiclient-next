@@ -63,10 +63,9 @@ export default defineComponent({
         method: "post",
         headers: { "content-type": "application/x-www-form-urlencoded" }
       }).then(result => {
-        console.log(result);
         if (result.data.ReturnCode === 0) {
           router.push({
-            name: "Index"
+            name: "Home"
           });
         }
       });
