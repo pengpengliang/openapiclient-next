@@ -31,3 +31,4 @@ interface ConfigObj {
 declare interface Window {
   config: ConfigObj;
 }
+
