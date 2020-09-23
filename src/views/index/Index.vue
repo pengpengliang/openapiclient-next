@@ -12,16 +12,17 @@
         mode="inline"
         v-model:selectedKeys="selectedKeys"
         v-model:openKeys="openKeys"
+        @click="menuSelect"
       >
-       <a-sub-menu key="sub1">
+        <a-sub-menu key="sub1">
           <template v-slot:title>
             <span>
               <user-outlined />
               <span>Navigation One</span>
             </span>
           </template>
-          <a-menu-item key="1">Option 1</a-menu-item>
-          <a-menu-item key="2">Option 2</a-menu-item>
+          <a-menu-item key="home">Option 1</a-menu-item>
+          <a-menu-item key="about">Option 2</a-menu-item>
           <a-menu-item key="3">Option 3</a-menu-item>
           <a-menu-item key="4">Option 4</a-menu-item>
         </a-sub-menu>
@@ -37,7 +38,6 @@
           <a-menu-item key="7">Option 7</a-menu-item>
           <a-menu-item key="8">Option 8</a-menu-item>
         </a-sub-menu>
-       
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -62,19 +62,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, watch } from "vue";
+import { defineComponent, onMounted, reactive, toRefs, watch } from "vue";
 import {
   UserOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from "@ant-design/icons-vue";
+import { useRoute, useRouter } from "vue-router";
+interface MenuItem {
+  key: string;
+}
 export default defineComponent({
   setup() {
+    const route = useRoute();
+    const router = useRouter();
     const menuState = reactive({
-      selectedKeys: ["5"],
+      selectedKeys: ["home"],
       collapsed: false,
       openKeys: ["sub1"],
       preOpenKeys: ["sub1"]
+    });
+    onMounted(() => {
+      const routePath: string = route.path.split("/")[1];
+      const arr: string[] = [];
+      arr.push(routePath);
+      menuState.selectedKeys = arr;
     });
     watch(
       () => menuState.openKeys,
@@ -86,6 +98,14 @@ export default defineComponent({
       toggleCollapsed() {
         menuState.collapsed = !menuState.collapsed;
         menuState.openKeys = menuState.collapsed ? [] : menuState.preOpenKeys;
+      },
+      menuSelect(item: MenuItem) {
+        const routePath = route.path.split("/")[1];
+        if (item.key !== routePath) {
+          router.push({
+            path: "/" + item.key
+          });
+        }
       }
     };
     return { ...toRefs(menuState), ...menuMethod };
