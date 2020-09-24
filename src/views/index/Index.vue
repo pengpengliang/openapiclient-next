@@ -14,7 +14,18 @@
         v-model:openKeys="openKeys"
         @click="menuSelect"
       >
-        <a-sub-menu key="sub1">
+        <a-sub-menu v-for="item in navConfig" :key="item.key">
+          <template v-slot:title>
+            <span>
+              <user-outlined />
+              <span>{{ item.name }}</span>
+            </span>
+          </template>
+          <a-menu-item v-for="items in item.children" :key="items.key">
+            {{ items.name }}
+          </a-menu-item>
+        </a-sub-menu>
+        <!-- <a-sub-menu key="sub1">
           <template v-slot:title>
             <span>
               <user-outlined />
@@ -37,7 +48,7 @@
           <a-menu-item key="6">Option 6</a-menu-item>
           <a-menu-item key="7">Option 7</a-menu-item>
           <a-menu-item key="8">Option 8</a-menu-item>
-        </a-sub-menu>
+        </a-sub-menu> -->
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -69,6 +80,7 @@ import {
   MenuFoldOutlined
 } from "@ant-design/icons-vue";
 import { useRoute, useRouter } from "vue-router";
+import Config from "@/common/config";
 interface MenuItem {
   key: string;
 }
@@ -77,10 +89,11 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
     const menuState = reactive({
-      selectedKeys: ["home"],
+      navConfig: Config.navConfig,
+      selectedKeys: [Config.navConfig[0].children[0].key],
       collapsed: false,
-      openKeys: ["sub1"],
-      preOpenKeys: ["sub1"]
+      openKeys: [Config.navConfig[0].key],
+      preOpenKeys: [Config.navConfig[0].key]
     });
     onMounted(() => {
       const routePath: string = route.path.split("/")[1];

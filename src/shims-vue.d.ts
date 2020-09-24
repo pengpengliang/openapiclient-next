@@ -15,6 +15,18 @@ declare module "*.svg" {
   export default content;
 }
 
+interface NavConfig {
+  key: string;
+  name: string;
+  iconName: string;
+  children: Array<NavChildren>;
+}
+
+interface NavChildren {
+  key: string;
+  name: string;
+}
+
 interface ConfigObj {
   originWebRoot: string;
   DevBaseUrl: string;
@@ -26,9 +38,9 @@ interface ConfigObj {
   modelUrl: string;
   dataManageWebRoots: string;
   imgRoot: string;
+  navConfig: Array<NavConfig>;
 }
 
 declare interface Window {
   config: ConfigObj;
 }
-
