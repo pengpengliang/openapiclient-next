@@ -25,30 +25,6 @@
             {{ items.name }}
           </a-menu-item>
         </a-sub-menu>
-        <!-- <a-sub-menu key="sub1">
-          <template v-slot:title>
-            <span>
-              <user-outlined />
-              <span>Navigation One</span>
-            </span>
-          </template>
-          <a-menu-item key="home">Option 1</a-menu-item>
-          <a-menu-item key="about">Option 2</a-menu-item>
-          <a-menu-item key="3">Option 3</a-menu-item>
-          <a-menu-item key="4">Option 4</a-menu-item>
-        </a-sub-menu>
-        <a-sub-menu key="sub2">
-          <template v-slot:title>
-            <span>
-              <user-outlined />
-              <span>Navigation Two</span>
-            </span>
-          </template>
-          <a-menu-item key="5">Option 5</a-menu-item>
-          <a-menu-item key="6">Option 6</a-menu-item>
-          <a-menu-item key="7">Option 7</a-menu-item>
-          <a-menu-item key="8">Option 8</a-menu-item>
-        </a-sub-menu> -->
       </a-menu>
     </a-layout-sider>
     <a-layout>
