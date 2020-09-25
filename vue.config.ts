@@ -9,12 +9,12 @@ module.exports = {
 
     svgRule.uses.clear();
 
-    // svgRule.use('vue-svg-loader').loader('vue-svg-loader');
-    svgRule
-      .use("babel-loader")
-      .loader("babel-loader")
-      .end()
-      .use("vue-svg-loader")
-      .loader("vue-svg-loader");
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+    // svgRule
+    //   .use("babel-loader")
+    //   .loader("babel-loader")
+    //   .end()
+    //   .use("vue-svg-loader")
+    //   .loader("vue-svg-loader");
   },
 };
