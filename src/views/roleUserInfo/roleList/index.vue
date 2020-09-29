@@ -7,13 +7,15 @@
   <div class="roleList">
     <div class="listControl">
       <div class="title">角色列表</div>
+      <div class="button">
+        <svg-icon icon-class="addrole"></svg-icon>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
 export default defineComponent({
   setup() {
     return {};
