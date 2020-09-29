@@ -39,6 +39,10 @@ window.config = {
         {
           key: "organization",
           name: "组织机构"
+        },
+        {
+          key: "roleUserInfo",
+          name: "角色用户"
         }
       ]
     }
